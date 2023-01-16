@@ -11,11 +11,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-        Tag: $(date + %s)
 
     steps:
     - uses: actions/checkout@v3
+    - name: get current time
+      run: export Tag=$(data + %s)
     - name: Build the Docker image
       run: docker build . --file dockerfile --tag quick-jupyter:$Tag
     - name: Run docker container
