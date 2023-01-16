@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - env:
+        Tag: $(date + %s)
+    - name: Build the Docker image
+      run: docker build . --file dockerfile --tag quick-jupyter:$Tag
+    - name: Run docker container
+      run: docker run -d -p 80:80 --name quick-jupyter quick-jupyter:$Tag
