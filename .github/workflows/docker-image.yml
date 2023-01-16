@@ -17,7 +17,7 @@ jobs:
     - name: get current time
       run: export Tag=$(data + %s)
     - name: Get time
-      run: echo &Tag
+      run: echo $Tag
     - name: Build the Docker image
       run: docker build . --file dockerfile --tag quick-jupyter:$Tag
     - name: Run docker container
