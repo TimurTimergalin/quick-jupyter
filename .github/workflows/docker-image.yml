@@ -16,9 +16,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: get current time
       run: export Tag=$(data +%s)
-    - name: Get time
-      run: echo $Tag
     - name: Build the Docker image
-      run: docker build . --file dockerfile --tag myjupyter:${Tag}
+      run: docker build . --file dockerfile --tag myjupyter:$Tag
     - name: Run docker container
-      run: docker run -d -p 80:80 --name quick-jupyter myjupyter:${Tag}
+      run: docker run -d -p 80:80 --name quick-jupyter myjupyter:$Tag
