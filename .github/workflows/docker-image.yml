@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - env:
+      env:
         Tag: $(date + %s)
     - name: Build the Docker image
       run: docker build . --file dockerfile --tag quick-jupyter:$Tag
